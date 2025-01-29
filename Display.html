@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+
+body {
+  font-family: "Inconsolata", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+    </style>
+</head>
+<body class="w-full p-0 m-0">
+    <div class="cons h-screen w-screen bg-stone-900 flex flex-col justify-center items-center">
+        <div class="navbar h-[20%] w-full flex flex-col justify-center items-center">
+            <div class="w-full h-full"></div>
+            <div class="navsmain flex w-full h-full justify-around items center">
+                <div class="logo">
+                    <img class="scale-150" src="images/youthedesigner.png" alt="">
+                </div>
+                <div></div>
+                <div></div>
+                <div class="navs flex justify center items center gap-20 font-semibold text-white text-xl">
+                    <div class="cursor-pointer"><img src="images/github.png" alt=""></div>
+                    <div class="cursor-pointer" ><img src="images/instagram.png" alt=""></div>
+                    <div class="cursor-pointer"><img src="images/twitter.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+        <div class="mdis h-[80%] w-[80%] flex justify-center items-center gap-2">
+            
+        </div>
+    </div>
+</body>
+<script>
+    function Generate(){
+        let a = window.localStorage.getItem("display")
+        const {title, content, ig} = JSON.parse(window.localStorage.getItem(a))
+        const newDiv = document.createElement("div")
+        newDiv.classList.add("h-full", "w-[50%]", "flex", "flex-col", "justify-center", "items-center")
+        const newtit = document.createElement("div")
+        newtit.textContent = title
+        const newcon = document.createElement("div")
+        newcon.textContent = content
+        newDiv.appendChild(newtit)
+        newDiv.appendChild(newcon)
+
+        const newImg = document.createElement("div")
+        newImg.classList.add("flex", "h-full", "w-[50%]", "justify-center", "items-center")
+        const imgs = document.createElement("img")
+        imgs.setAttribute("src", ig)
+        newImg.appendChild(imgs)
+
+        const parent = document.querySelector(".mdis")
+        parent.appendChild(newDiv)
+        parent.appendChild(newImg)
+    }
+    Generate()
+</script>
+</html>

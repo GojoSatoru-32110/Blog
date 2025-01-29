@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+
+body {
+  font-family: "Inconsolata", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+    </style>
+</head>
+<body class="w-full p-0 m-0">
+    <div class="cons h-screen w-screen bg-stone-900 flex flex-col justify-center items-center">
+        <div class="navbar h-[20%] w-full flex flex-col justify-center items-center">
+            <div class="w-full h-full"></div>
+            <div class="navsmain flex w-full h-full justify-around items center">
+                <div class="logo">
+                    <img class="scale-150" src="images/youthedesigner.png" alt="">
+                </div>
+                <div></div>
+                <div></div>
+                <div class="navs flex justify center items center gap-20 font-semibold text-white text-xl">
+                    <div class="cursor-pointer" onclick="Move(5)">Home</div>
+                    <div class="cursor-pointer" onclick="Move(1)">New</div>
+                    <div class="cursor-pointer" onclick="Move(2)">Blogs</div>
+                    <div class="cursor-pointer" onclick="Move(3)">About Us</div>
+                    <div class="cursor-pointer" onclick="Move(4)">Contact</div>
+                </div>
+            </div>
+        </div>
+        <div class="main h-[80%] w-full bg-white flex justify-center items-center">
+                <div class="bcons flex flex-col h-[80%] w-[60%] justify-center items-center rounded-[21px] gap-20 shadow-2xl p-10">
+                    <div class="title relative bottom-[10px]">
+                       <input type="text" class="btitle p-3 border-[2px] rounded-[15px] border-gray-500 focus:border-none w-[350px]" placeholder="Title...">
+                    </div>
+                    <div class="maincons flex flex-col justify-center items-center gap-5">
+                        <textarea class="newblog rounded-[15px] border-[2px] p-3 border-gray-500" id="" rows="10" cols="100" placeholder="Hi , I am Gojo"></textarea>
+                        <!-- <label for="file-upload" class="cursor-pointer bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
+                            Upload Image
+                          </label> -->
+                          <input id="file-upload" type="file" class="uploadimg" accept="image/*">                          
+                        <button class="cursor-pointer bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 w-[200px]" onclick="Add()">Add Blog</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+<script>
+        var ig = undefined
+     let igdiv = document.querySelector(".uploadimg")
+    console.log(igdiv)
+     igdiv.addEventListener("change", function(event){
+        if(!event.target.files[0]) return
+        ig = event.target.files[0]
+        let reader = new FileReader();
+        reader.onload = function(e){
+
+        }
+     })
+
+     function Move(a){
+        let s = ""
+        if(a == 1) s = "/New.html"
+        else if(a == 2) s = "/Blogs.html"
+        else if(a == 3) s = "/About.html"
+        else if(a == 4) s = "/Contact.html"
+        else s = "/main.html"
+        window.location.href = s
+        return
+    }
+
+    function Add(){
+        let s = document.querySelector(".newblog").value
+        let title = document.querySelector(".btitle").value
+       
+        if(!s || !title) return  
+        let a = window.localStorage.getItem("bcount")
+        a++ 
+        window.localStorage.setItem("bcount", a)
+        const bob = {title : title, content : s, ig : ig, val : 0}
+        window.localStorage.setItem(`Blog${a}`, JSON.stringify(bob))
+        setTimeout(()=>{
+            location.reload()
+        }, 1000)
+        Swal.fire({
+            title: "Blog Added",
+            text: "",
+            icon: "success"
+        });
+    }
+</script>
+</html>

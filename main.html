@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+
+body {
+  font-family: "Inconsolata", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+    </style>
+</head>
+<body class="w-full p-0 m-0">
+    <div class="cons h-screen w-screen bg-stone-900 flex flex-col justify-center items-center">
+        <div class="navbar h-[20%] w-full flex flex-col justify-center items-center">
+            <div class="w-full h-full"></div>
+            <div class="navsmain flex w-full h-full justify-around items center">
+                <div class="logo">
+                    <img class="scale-150" src="images/youthedesigner.png" alt="">
+                </div>
+                <div></div>
+                <div></div>
+                <div class="navs flex justify center items center gap-20 font-semibold text-white text-xl">
+                    <div class="cursor-pointer" onclick="Move(5)">Home</div>
+                    <div class="cursor-pointer" onclick="Move(1)">New</div>
+                    <div class="cursor-pointer" onclick="Move(2)">Blogs</div>
+                    <div class="cursor-pointer" onclick="Move(3)">About Us</div>
+                    <div class="cursor-pointer" onclick="Move(4)">Contact</div>
+                </div>
+            </div>
+        </div>
+        <div class="main h-[80%] w-full"></div>
+    </div>
+</body>
+<script>
+    function Move(a){
+        let s = ""
+        if(a == 1) s = "/New.html"
+        else if(a == 2) s = "/Blogs.html"
+        else if(a == 3) s = "/About.html"
+        else if(a == 4) s = "/Contact.html"
+        else s = "/main.html"
+        window.location.href = s
+        return
+    }
+</script>
+</html>

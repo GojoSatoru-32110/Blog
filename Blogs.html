@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+
+body {
+  font-family: "Inconsolata", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+    </style>
+</head>
+<body class="w-full p-0 m-0">
+    <div class="cons h-screen w-screen bg-stone-900 flex flex-col justify-center items-center">
+        <div class="navbar h-[20%] w-full flex flex-col justify-center items-center">
+            <div class="w-full h-full"></div>
+            <div class="navsmain flex w-full h-full justify-around items center">
+                <div class="logo">
+                    <img class="scale-150" src="images/youthedesigner.png" alt="">
+                </div>
+                <div></div>
+                <div></div>
+                <div class="navs flex justify center items center gap-20 font-semibold text-white text-xl">
+                    <div class="cursor-pointer" onclick="Move(5)">Home</div>
+                    <div class="cursor-pointer" onclick="Move(1)">New</div>
+                    <div class="cursor-pointer" onclick="Move(2)">Blogs</div>
+                    <div class="cursor-pointer" onclick="Move(3)">About Us</div>
+                    <div class="cursor-pointer" onclick="Move(4)">Contact</div>
+                </div>
+            </div>
+        </div>
+        <div class="allblogs h-[80%] w-full flex gap-15 justify-center items-center p-10">
+
+        </div>
+    </div>
+</body>
+<script>
+    function Move(a){
+        let s = ""
+        if(a == 1) s = "/New.html"
+        else if(a == 2) s = "/Blogs.html"
+        else if(a == 3) s = "/About.html"
+        else if(a == 4) s = "/Contact.html"
+        else s = "/main.html"
+        window.location.href = s
+        return
+    }
+    function inc(event){
+        console.log(event.target)
+        let Gojo = window.localStorage.getItem(`Blog${event.target.id}`)
+        Gojo = JSON.parse(Gojo)
+        Gojo.val++
+        window.localStorage.setItem(`Blog${event.target.id}`, JSON.stringify(Gojo))
+        window.localStorage.setItem("display", `Blog${event.target.id}`)
+        window.location.href = "/Display.html"
+    }
+    function Generate(){
+
+        let a = window.localStorage.getItem("bcount")
+        const parent = document.querySelector(".allblogs")
+        for(let i = 0; i < a; i++){
+            const newBlog = document.createElement("div")
+            newBlog.classList.add("bg-green-500", "flex", "h-[50%]", "w-[50%]", "flex-col", "gap-5", "text-white", "justify-center", "items-center", "gap-3")
+            newBlog.setAttribute("id", i+1)
+            
+            const Gojo = window.localStorage.getItem(`Blog${i+1}`)
+            const {title, content, ig, val} = JSON.parse(Gojo)
+            const imgdiv = document.createElement("div")
+            imgdiv.classList.add("flex", "justify-center", "items-center")
+            const newImage = document.createElement("img")
+            newImage.setAttribute("src", ig)
+            newImage.setAttribute("id", i+1)
+            imgdiv.setAttribute("id", i+1)
+            imgdiv.appendChild(newImage)
+            newBlog.appendChild(imgdiv)
+
+            const condiv = document.createElement("div")
+            condiv.classList.add("flex", "flex-col", "justify-center", "items-center", "gap-2")
+            const tdiv = document.createElement("div")
+            tdiv.textContent = title
+            const bdiv = document.createElement("div")
+            bdiv.textContent = content
+            condiv.appendChild(tdiv)
+            condiv.appendChild(bdiv)
+            condiv.setAttribute("id", i+1)
+            tdiv.setAttribute("id", i+1)
+            bdiv.setAttribute("id", i+1)
+            newBlog.appendChild(condiv)
+            newBlog.addEventListener("click", inc)
+            parent.appendChild(newBlog)
+
+        }
+    }
+    Generate()
+</script>
+</html>
