@@ -39,7 +39,7 @@ body {
                 </div>
             </div>
         </div>
-        <div class="allblogs h-[80%] w-full flex gap-15 justify-center items-center p-10">
+        <div class="allblogs h-[80%] w-full grid gap-10 grid-cols-3 p-15">
 
         </div>
     </div>
@@ -70,7 +70,7 @@ body {
         const parent = document.querySelector(".allblogs")
         for(let i = 0; i < a; i++){
             const newBlog = document.createElement("div")
-            newBlog.classList.add("bg-green-500", "flex", "h-[50%]", "w-[50%]", "flex-col", "gap-5", "text-white", "justify-center", "items-center", "gap-3")
+            newBlog.classList.add("bg-green-500", "flex", "h-[50%]", "w-[50%]", "flex-col", "gap-5", "text-white", "justify-center", "items-center", "gap-3", "cursor-pointer")
             newBlog.setAttribute("id", i+1)
             
             const Gojo = window.localStorage.getItem(`Blog${i+1}`)
